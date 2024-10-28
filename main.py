@@ -109,12 +109,12 @@ class AddressBook(UserDict):
     def get_upcoming_birthdays(self, days = 7):
         today = datetime.today()
         upcoming = today + timedelta(days=days)
-        birthdays_next_week = []
+        birthdays_next_week = {}
         for record in self.data.values():
             if record.birthday:
                 birthday_this_year = record.birthday.value.replace(year=today.year)
                 if today <= birthday_this_year < upcoming:
-                    birthdays_next_week.append(record.name.value)
+                   birthdays_next_week[record.name.value] = birthday_this_year.strftime("%d.%m.%Y")
         return birthdays_next_week
 
 
